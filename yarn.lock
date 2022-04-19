@@ -6576,11 +6576,13 @@ __metadata:
     expo-web-browser: ~10.1.0
     jest: ^26.6.3
     jest-expo: ~44.0.1
+    prettier: 2.6.2
     react: 17.0.1
     react-dom: 17.0.1
     react-native: 0.64.3
     react-native-safe-area-context: 3.3.2
     react-native-screens: ~3.10.1
+    react-native-typography: ^1.4.1
     react-native-web: 0.17.1
     react-test-renderer: 17.0.1
     typescript: ~4.3.5
@@ -8149,6 +8151,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:2.6.2":
+  version: 2.6.2
+  resolution: "prettier@npm:2.6.2"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 48d08dde8e9fb1f5bccdd205baa7f192e9fc8bc98f86e1b97d919de804e28c806b0e6cc685e4a88211aa7987fa9668f30baae19580d87ced3ed0f2ec6572106f
+  languageName: node
+  linkType: hard
+
 "pretty-format@npm:^26.5.2, pretty-format@npm:^26.6.2":
   version: 26.6.2
   resolution: "pretty-format@npm:26.6.2"
@@ -8396,6 +8407,16 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 9b20b0c8ab6b9b03fb2bfdd9edbc5bdba93eec415095d121dd9444a930bc5c76774a4e169901f9fe3f3180cb7fb04fd9f66367f70e7a4397a1787bfd87b6e336
+  languageName: node
+  linkType: hard
+
+"react-native-typography@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "react-native-typography@npm:1.4.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: fa30e60e2d27f4634aea1484dcbec4edf2319f09406d2fd5c21a449f41eb8fad044474eedb1716d361cbfe27c247d180ec99f56fbdfd9cf0cb0ae1bb733b5d5b
   languageName: node
   linkType: hard
 
