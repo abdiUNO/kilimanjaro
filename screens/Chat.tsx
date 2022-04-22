@@ -2,20 +2,14 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
+import { RootTabScreenProps } from '../navigation/types';
 
-import { material } from 'react-native-typography';
+import { material, systemWeights } from 'react-native-typography';
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function Chat({ navigation }: RootTabScreenProps<'Chat'>) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Tab One</Text>
-            <View
-                style={styles.separator}
-                lightColor="#eee"
-                darkColor="rgba(255,255,255,0.1)"
-            />
-            <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+            <Text style={styles.title}>Chat</Text>
         </View>
     );
 }
@@ -25,6 +19,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#000',
     },
     title: {
         fontSize: 20,
