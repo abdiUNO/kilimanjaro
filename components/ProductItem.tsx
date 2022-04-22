@@ -11,7 +11,7 @@ import {
 } from 'native-base';
 import { Text as NativeBaseText } from 'native-base';
 import { IProduct } from '../types';
-import FastImage from 'react-native-fast-image';
+// import FastImage from 'react-native-fast-image';
 
 export default function ProductItem({
     id,
@@ -30,8 +30,10 @@ export default function ProductItem({
             backgroundColor="#333333">
             <Box>
                 <AspectRatio w="100%" ratio={1.5}>
-                    <FastImage
-                        source={{ uri: images[0], priority: FastImage.priority.normal }}
+                    <Image
+                        source={{ uri: images[0] }}
+                        alt={`product-img-${id}`}
+                        key={`product-${id}`}
                     />
                 </AspectRatio>
                 <Center
