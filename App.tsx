@@ -1,4 +1,8 @@
 import React from 'react';
+
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: Async Storage has been extracted from react-native core']);
+
 import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
