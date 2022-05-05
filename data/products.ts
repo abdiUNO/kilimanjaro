@@ -9,6 +9,7 @@ const vendors: IVendor[] = [
         phone: '512-705-4846',
         profilePic:
             'https://res.cloudinary.com/glide/image/fetch/f_auto,w_900,h_653,c_lfill/https%3A%2F%2Fstorage.googleapis.com%2Fglide-prod.appspot.com%2Fuploads-v2%2Fmpuus3hudgpBOxKpJvSv%2Fpub%2FbatWsm6pAXwrqHyvZr9I.jpeg',
+        location: 'New York',
     },
     {
         id: 1,
@@ -18,6 +19,7 @@ const vendors: IVendor[] = [
         phone: '6467555030',
         profilePic:
             'https://res.cloudinary.com/glide/image/fetch/f_auto,w_900,h_653,c_lfill/https%3A%2F%2Fstorage.googleapis.com%2Fglide-prod.appspot.com%2Fuploads-v2%2Fmpuus3hudgpBOxKpJvSv%2Fpub%2F4qxX0cQzybBXwOwoSrKP.jpeg',
+        location: 'New York',
     },
 ];
 

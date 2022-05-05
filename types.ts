@@ -5,6 +5,7 @@ interface IVendor {
     email: string;
     phone: string;
     profilePic: string;
+    location: string;
 }
 
 type IProduct = {

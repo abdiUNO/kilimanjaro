@@ -2,10 +2,12 @@
   "expo": {
     "name": "Kilimanjaro",
     "slug": "Kilimanjaro",
-    "version": "1.0.0",
+    "privacy": "unlisted",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
+    "owner": "kilimanjaro-team",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -19,8 +21,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.myapp"
+      "supportsTablet": false,
+      "bundleIdentifier": "com.app.kilimanjaroapp"
     },
     "android": {
       "adaptiveIcon": {

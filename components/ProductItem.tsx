@@ -54,13 +54,13 @@ export default function ProductItem({
                     {category.toUpperCase()}
                 </Center>
             </Box>
-            <Stack p="2" space={3}>
-                <Stack space={0}>
+            <Stack p="3" space={1}>
+                <Stack>
                     <Box p={0} mb="5px">
                         <NativeBaseText
                             color="white"
-                            fontSize="xs"
-                            fontWeight="600"
+                            fontSize="12px"
+                            fontFamily="NunitoSans_700Bold"
                             lineHeight="17px"
                             numberOfLines={1}
                             mb="4px">
@@ -79,8 +79,9 @@ export default function ProductItem({
                     <NativeBaseText
                         color="#999999"
                         _dark={{
-                            color: 'warmGray.200',
+                            color: '#999999',
                         }}
+                        fontFamily="NunitoSans_400Regular"
                         lineHeight="17px"
                         fontSize="14px"
                         fontWeight="400">
@@ -88,7 +89,7 @@ export default function ProductItem({
                     </NativeBaseText>
                 </Stack>
                 <HStack alignItems="center" justifyContent="space-between">
-                    <Flex alignItems="center" flexDirection="row" flex={3 / 4} mr="28px">
+                    <Box alignItems="center" flexDirection="row" flex={3 / 4} mr="28px">
                         <Avatar
                             bg="green.500"
                             size="sm"
@@ -103,26 +104,30 @@ export default function ProductItem({
                             _dark={{
                                 color: 'warmGray.200',
                             }}
-                            lineHeight="17px"
+                            lineHeight="24px"
                             fontSize="14px"
+                            fontFamily="NunitoSans_400Regular"
                             fontWeight="400"
                             ellipsizeMode="tail"
                             numberOfLines={1}>
                             {vendor.title}
                         </NativeBaseText>
-                    </Flex>
-                    <NativeBaseText
-                        color="#ffffff"
-                        _dark={{
-                            color: 'warmGray.200',
-                        }}
-                        lineHeight="17px"
-                        fontSize="14px"
-                        fontWeight="400"
-                        ellipsizeMode="tail"
-                        numberOfLines={1}>
-                        {price}
-                    </NativeBaseText>
+                    </Box>
+                    <Box>
+                        <NativeBaseText
+                            color="#ffffff"
+                            _dark={{
+                                color: 'warmGray.200',
+                            }}
+                            lineHeight="17px"
+                            fontSize="14px"
+                            fontFamily="NunitoSans_400Regular"
+                            fontWeight="500"
+                            ellipsizeMode="tail"
+                            numberOfLines={1}>
+                            {price}
+                        </NativeBaseText>
+                    </Box>
                 </HStack>
             </Stack>
         </Box>

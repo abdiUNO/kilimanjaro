@@ -1,5 +1,6 @@
 import { FontAwesome, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
@@ -17,8 +18,9 @@ import Categories from '../screens/Categories';
 import Cart from '../screens/Cart';
 import Chat from '../screens/Chat';
 import Profile from '../screens/Profile';
-
-import ProductsIcon from '../icons/products.svg.svg';
+import VendorDetail from '../screens/VendorDetail';
+import Vendors from '../screens/Vendors';
+import ProductsIcon from '../icons/products.svg';
 import CategoriesIcon from '../icons/categories.svg';
 import CartIcon from '../icons/cart.svg';
 import ChatIcon from '../icons/chat.svg';
@@ -28,7 +30,8 @@ import {
     RootStackParamList,
     ProductStackList,
     RootTabParamList,
-    RootTabScreenProps,
+    RootScreenProps,
+    ProductStackScreenProps,
 } from './types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -158,24 +161,30 @@ function ProductsNavigator() {
             <ProductsStack.Screen
                 name="ProductsDetail"
                 options={({ route }) => ({
-                    headerLargeTitle: true,
+                    headerLargeTitle: false,
                     headerTintColor: '#ffffff',
                     headerLargeTitleShadowVisible: false,
                     headerShadowVisible: false,
-                    headerLargeStyle: {
-                        backgroundColor: '#000000',
-                    },
-                    headerLargeTitleStyle: {
-                        fontSize: 34,
-                        fontWeight: '800',
-                    },
                     headerStyle: {
                         backgroundColor: '#000000',
                         borderBottomColor: '#000000',
                     },
-                    headerTitle: getHeaderTitle(route),
                 })}
                 component={ProductDetail}
+            />
+            <ProductsStack.Screen
+                name="Vendor"
+                options={({ route }) => ({
+                    headerLargeTitle: false,
+                    headerTintColor: '#ffffff',
+                    headerLargeTitleShadowVisible: false,
+                    headerShadowVisible: false,
+                    headerStyle: {
+                        backgroundColor: '#000000',
+                        borderBottomColor: '#000000',
+                    },
+                })}
+                component={VendorDetail}
             />
         </ProductsStack.Navigator>
     );
@@ -201,7 +210,7 @@ function BottomTabNavigator() {
             <BottomTab.Screen
                 name="Products"
                 component={ProductsNavigator}
-                options={({ navigation }: RootTabScreenProps<'Products'>) => ({
+                options={({ navigation }) => ({
                     title: 'Products',
                     headerShown: false,
                     tabBarIcon: ({ color }) => (
@@ -262,12 +271,12 @@ function BottomTabNavigator() {
     );
 }
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-    name: React.ComponentProps<typeof FontAwesome5>['name'];
-    color: string;
-}) {
-    return <FontAwesome5 size={30} style={{ marginBottom: -3 }} {...props} />;
-}
+// const Drawer = createDrawerNavigator();
+// const DrawerNavigator = () => {
+//     return (
+//         <Drawer.Navigator>
+//             <Drawer.Screen name="Home" component={BottomTabNavigator} />
+//             <Drawer.Screen name="Vendors" component={Vendors} />
+//         </Drawer.Navigator>
+//     );
+// };

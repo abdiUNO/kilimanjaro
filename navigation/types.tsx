@@ -6,6 +6,7 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { IProduct } from '../types';
 
 declare global {
     namespace ReactNavigation {
@@ -21,22 +22,41 @@ export type RootStackParamList = {
 
 export type ProductStackList = {
     ProductsRoot: undefined;
-    ProductsDetail: undefined;
+    ProductsDetail: IProduct;
+    Vendor: IProduct;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
     NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
-    Products: undefined;
+    Products: NavigatorScreenParams<ProductStackList>;
     Categories: undefined;
     Cart: undefined;
     Chat: undefined;
     Profile: undefined;
 };
 
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
+export type ProductStackScreenProps<Screen extends keyof ProductStackList> =
     CompositeScreenProps<
-        BottomTabScreenProps<RootTabParamList, Screen>,
-        NativeStackScreenProps<RootStackParamList>
+        NativeStackScreenProps<ProductStackList, Screen>,
+        BottomTabScreenProps<RootTabParamList>
     >;
+
+export type ProductsDetailScreenProps = CompositeScreenProps<
+    NativeStackScreenProps<ProductStackList, 'ProductsDetail'>,
+    BottomTabScreenProps<RootTabParamList>
+>;
+
+export type RootScreenProps = CompositeScreenProps<
+    NativeStackScreenProps<RootStackParamList>,
+    ProductsDetailScreenProps
+>;
+
+// export type RootScreenProps = CompositeScreenProps<
+//     NativeStackScreenProps<RootStackParamList>,
+//     CompositeScreenProps<
+//         NativeStackScreenProps<ProductStackList, 'ProductsRoot'>,
+//         BottomTabScreenProps<RootTabParamList>
+//         >
+//     >;

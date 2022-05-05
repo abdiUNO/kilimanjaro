@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView, FlatList } from 'react-native';
-import { Box } from 'native-base';
+import { Box, Pressable } from 'native-base';
 
 import ProductItem from '../components/ProductItem';
-import { RootTabScreenProps } from '../navigation/types';
+import { RootScreenProps } from '../navigation/types';
 import { IVendor, IProduct } from '../types';
 import products from '../data/products';
 
-const renderItem = ({ item }: { item: IProduct }) => (
-    <Box w="1/2" p="2">
-        <ProductItem {...item} />
-    </Box>
-);
-
-export default function Products({ navigation }: RootTabScreenProps<'Products'>) {
+export default function Products({ navigation }: RootScreenProps) {
     const [search, setSearch] = React.useState('');
 
     React.useEffect(() => {
@@ -27,6 +21,24 @@ export default function Products({ navigation }: RootTabScreenProps<'Products'>)
             },
         });
     }, [navigation]);
+
+    const renderItem = (params: any) => {
+        const item: IProduct = params.item;
+        const index: number = params.index;
+        const isEven = index % 2 === 0;
+
+        return (
+            <Box
+                w="1/2"
+                pl={isEven ? '16px' : '8px'}
+                pr={!isEven ? '16px' : '8px'}
+                pb="3">
+                <Pressable onPress={() => navigation.navigate('ProductsDetail', item)}>
+                    <ProductItem {...item} />
+                </Pressable>
+            </Box>
+        );
+    };
 
     return (
         <FlatList
