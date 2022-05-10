@@ -3,7 +3,7 @@
     "name": "Kilimanjaro",
     "slug": "Kilimanjaro",
     "privacy": "unlisted",
-    "version": "1.2.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -22,7 +22,7 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.app.kilimanjaroapp"
+      "bundleIdentifier": "com.kilimanjaro.app"
     },
     "android": {
       "adaptiveIcon": {

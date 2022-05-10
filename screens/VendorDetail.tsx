@@ -31,12 +31,14 @@ import BubbleIcon from '../icons/bubble.svg';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
-import { Button } from 'native-base';
+import { Button, Text as NativeBaseText } from 'native-base';
 
 import Carousel, { CarouselProperties } from 'react-native-snap-carousel';
 import { IProduct, IVendor } from '../types';
 import { LinearGradient } from 'expo-linear-gradient';
 import Communications from 'react-native-communications';
+import { catalog } from '../data/products';
+import { Poppins_700Bold } from '@expo-google-fonts/poppins';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
@@ -71,6 +73,7 @@ export default function VendorDetail({ route, navigation }: ProductsDetailScreen
 
     const ref = useRef(null);
 
+    console.log(catalog[product.vendor.id]);
     return (
         <ScrollView style={styles.container} scrollEventThrottle={500}>
             <Image
@@ -216,6 +219,80 @@ export default function VendorDetail({ route, navigation }: ProductsDetailScreen
                         </Pressable>
                     </HStack>
                 </HStack>
+            </Box>
+
+            <Box pl="4" pr="4" py="2">
+                <Text
+                    fontSize="16px"
+                    fontWeight="700"
+                    fontFamily="Poppins_700Bold"
+                    lineHeight="19px"
+                    color="#fff">
+                    Catalog
+                </Text>
+
+                <Carousel
+                    ref={ref}
+                    data={catalog[product.vendor.id]}
+                    slideStyle={{ padding: 0, margin: 0 }}
+                    contentContainerStyle={{ padding: 0, margin: 0 }}
+                    containerCustomStyle={{ flexGrow: 0, width: 100 }}
+                    renderItem={({ item: product, index }) => (
+                        <Box
+                            style={{ width: 167.5, height: 164 }}
+                            rounded="lg"
+                            overflow="hidden">
+                            <Box>
+                                <Image
+                                    source={{ uri: product.images[0] }}
+                                    key={`product-${index}`}
+                                    style={{ height: 126 }}
+                                    borderRadius={7}
+                                    resizeMode="cover"
+                                />
+                                <Center
+                                    bg="white"
+                                    _text={{
+                                        color: 'black',
+                                        fontWeight: '600',
+                                        fontSize: '10px',
+                                        lineHeight: 17,
+                                    }}
+                                    borderRadius="xl"
+                                    position="absolute"
+                                    top="12px"
+                                    left="10px"
+                                    pt="2px"
+                                    pb="3px"
+                                    px="12px">
+                                    {product.category.toUpperCase()}
+                                </Center>
+                            </Box>
+                            <Box mt="4px">
+                                <NativeBaseText
+                                    color="white"
+                                    fontSize="14px"
+                                    fontFamily="Poppins_500Medium"
+                                    lineHeight="17px"
+                                    numberOfLines={1}>
+                                    {product.title}
+                                </NativeBaseText>
+                                <NativeBaseText
+                                    color="#999999"
+                                    fontSize="12px"
+                                    fontFamily="NunitoSans_400Regular"
+                                    lineHeight="17px"
+                                    numberOfLines={1}>
+                                    {product.price}
+                                </NativeBaseText>
+                            </Box>
+                        </Box>
+                    )}
+                    sliderWidth={sliderWidth}
+                    itemWidth={167.5}
+                    loop={true}
+                    useScrollView={true}
+                />
             </Box>
 
             <Box pl="4" pr="4" py="12px" pb="6">

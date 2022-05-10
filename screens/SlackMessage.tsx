@@ -17,6 +17,7 @@ export default class Message extends React.Component {
             position: 'left',
             isSameUser,
             isSameDay,
+            renderUsernameOnMessage: true,
         };
     }
 
@@ -54,7 +55,7 @@ export default class Message extends React.Component {
             <Avatar
                 {...avatarProps}
                 imageStyle={{
-                    left: [styles.slackAvatar, avatarProps.imageStyle, extraStyle],
+                    left: [styles.slackAvatar, avatarProps.imageStyle],
                 }}
             />
         );
@@ -87,14 +88,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
         justifyContent: 'flex-start',
-        marginLeft: 8,
+        marginLeft: 12,
         marginRight: 0,
     },
     slackAvatar: {
         // The bottom should roughly line up with the first line of message text.
-        height: 40,
-        width: 40,
-        borderRadius: 3,
+        height: 32,
+        width: 32,
+        borderRadius: 100,
+        top: -15,
     },
 });
 

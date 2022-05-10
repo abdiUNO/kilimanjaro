@@ -131,6 +131,13 @@ export default class Bubble extends React.Component {
 
     renderUsername() {
         const username = this.props.currentMessage.user.name;
+
+        let extraStyle;
+        if (isSameUser(this.props.currentMessage, this.props.previousMessage)) {
+            // Set the invisible avatar height to 0, but keep the width, padding, etc.
+            extraStyle = { height: 0 };
+        }
+
         if (username) {
             const { containerStyle, wrapperStyle, ...usernameProps } = this.props;
             if (this.props.renderUsername) {
@@ -145,11 +152,11 @@ export default class Bubble extends React.Component {
                 // </Text>
 
                 <NativeBaseText
-                    style={[styles.standardFont, this.props.usernameStyle]}
-                    color="white"
-                    fontSize="16px"
+                    style={[this.props.usernameStyle]}
+                    color="#ffffff66"
+                    fontSize="12px"
                     fontFamily="NunitoSans_400Regular"
-                    lineHeight="19px"
+                    lineHeight="17px"
                     m="0">
                     {username}
                 </NativeBaseText>
@@ -210,7 +217,7 @@ export default class Bubble extends React.Component {
                     <View style={[styles.wrapper, this.props.wrapperStyle]}>
                         <View>
                             {/*{this.renderCustomView()}*/}
-                            {messageHeader}
+                            {/*{messageHeader}*/}
                             {this.renderMessageImage()}
                             {this.renderMessageText()}
                         </View>
@@ -225,13 +232,14 @@ export default class Bubble extends React.Component {
 // Note: Everything is forced to be "left" positioned with this component.
 // The "right" position is only used in the default Bubble.
 const styles = StyleSheet.create({
-    standardFont: {
-        fontSize: 15,
-    },
+    standardFont: {},
     slackMessageText: {
+        fontFamily: 'NunitoSans_400Regular',
         color: '#FFFFFF',
         marginLeft: 0,
         marginRight: 0,
+        marginBottom: 0,
+        marginTop: 0,
     },
     container: {
         flex: 1,
@@ -242,11 +250,12 @@ const styles = StyleSheet.create({
 
         backgroundColor: '#333333',
         borderRadius: 20,
-        borderColor: '#f0f0f0',
+        borderColor: 'transparent',
         borderStyle: 'solid',
         overflow: 'hidden',
         borderWidth: 1,
-        marginRight: 60,
+        borderBottomLeftRadius: 0,
+        marginRight: 40,
         minHeight: 20,
 
         justifyContent: 'flex-end',

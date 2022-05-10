@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Warning: Async Storage has been extracted from react-native core']);
+LogBox.ignoreLogs(['AsyncStorage has been extracted from react-native core']);
+
+import { AuthProvider } from './context/Auth';
 
 import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'expo-status-bar';
@@ -92,10 +94,12 @@ export default function App() {
         return <AppLoading />;
     } else {
         return (
-            <NativeBaseProvider>
-                <Navigation colorScheme={colorScheme} />
-                <StatusBar animated={true} style="light" />
-            </NativeBaseProvider>
+            <AuthProvider>
+                <NativeBaseProvider>
+                    <Navigation colorScheme={colorScheme} />
+                    <StatusBar animated={true} style="light" />
+                </NativeBaseProvider>
+            </AuthProvider>
         );
     }
 }

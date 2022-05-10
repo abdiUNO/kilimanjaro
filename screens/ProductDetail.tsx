@@ -63,7 +63,7 @@ export default function ProductDetail({ route, navigation }: ProductsDetailScree
         <ScrollView style={styles.container} scrollEventThrottle={500}>
             <Carousel
                 ref={ref}
-                containerCustomStyle={{ flexGrow: 1, height: 520, flexShrink: 0 }}
+                containerCustomStyle={{ flexGrow: 1, height: 500 }}
                 data={product.images}
                 renderItem={({ item, index }) => (
                     <View style={{ flex: 1 }}>

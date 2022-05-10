@@ -1,14 +1,20 @@
-import { FontAwesome, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import * as React from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { ColorSchemeName, Pressable, Dimensions, ActivityIndicator } from 'react-native';
+
+import { FontAwesome5 } from '@expo/vector-icons';
+import * as SplashScreen from 'expo-splash-screen';
+import useColorScheme from '../hooks/useColorScheme';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import * as React from 'react';
-import { ColorSchemeName, Pressable, Dimensions } from 'react-native';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../services/firebase';
+import { useAuth } from '../context/Auth';
+import { View } from '../components/Themed';
 
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -25,7 +31,8 @@ import CategoriesIcon from '../icons/categories.svg';
 import CartIcon from '../icons/cart.svg';
 import ChatIcon from '../icons/chat.svg';
 import ProfileIcon from '../icons/profile.svg';
-
+import Login from '../screens/Login';
+import SignUp from '../screens/SignUp';
 import {
     RootStackParamList,
     ProductStackList,
@@ -35,12 +42,51 @@ import {
 } from './types';
 import LinkingConfiguration from './LinkingConfiguration';
 
+function AuthStack() {
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+            {/*<Stack.Screen name="Signup" component={Signup} />*/}
+        </Stack.Navigator>
+    );
+}
+
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+    const { authData, loading } = useAuth();
+
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        // onAuthStateChanged returns an unsubscriber
+        const unsubscribeAuth = onAuthStateChanged(auth, async (authenticatedUser) => {
+            // authenticatedUser ? setUser(authenticatedUser) : setUser(null);
+            setIsLoading(false);
+        });
+
+        // unsubscribe auth listener on unmount
+        return unsubscribeAuth;
+    }, []);
+
+    if (isLoading || loading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" />
+            </View>
+        );
+    }
+
     return (
         <NavigationContainer
             linking={LinkingConfiguration}
             theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-            <RootNavigator />
+            {authData &&
+            authData.jwtToken &&
+            authData.name &&
+            authData.name.length > 0 ? (
+                <RootNavigator />
+            ) : (
+                <AuthStack />
+            )}
         </NavigationContainer>
     );
 }
